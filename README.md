@@ -1,1 +1,1 @@
-# My MongoDB practice
+# MongoDB practice
