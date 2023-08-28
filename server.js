@@ -35,4 +35,26 @@ app.get("/movies", (req, res) => {
         .status(500)
         .json({ error: "Something goes wrong..." })
     })
+});
+
+app.get("/movies/:id", (req, res) => {
+  if (ObjectId.isValid(req.params.id)) {
+    db
+      .collection("movies")
+      .findOne({ _id: new ObjectId(req.params.id) })
+      .then((document) => {
+        res
+          .status(200)
+          .json(document)
+      })
+      .catch(() => {
+        res
+          .status(500)
+          .json({ error: "Something goes wrong..." })
+      })
+  } else {
+    res
+      .status(500)
+      .json({ error: "Wrong id" });
+  }
 })
