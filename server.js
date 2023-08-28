@@ -33,11 +33,7 @@ app.get("/movies", (req, res) => {
         .status(200)
         .json(movies)
     })
-    .catch(() => {
-      res
-        .status(500)
-        .json({ error: "Something goes wrong..." })
-    })
+    .catch(() => handleError(res, "Something goes wrong..."))
 });
 
 app.get("/movies/:id", (req, res) => {
@@ -50,14 +46,26 @@ app.get("/movies/:id", (req, res) => {
           .status(200)
           .json(document)
       })
-      .catch(() => {
-        res
-          .status(500)
-          .json({ error: "Something goes wrong..." })
-      })
+      .catch(() => handleError(res, "Something goes wrong..."))
   } else {
-    res
-      .status(500)
-      .json({ error: "Wrong id" });
+    handleError(res, "Wrong id")
+  }
+})
+
+
+app.delete("/movies/:id", (req, res) => {
+  if (ObjectId.isValid(req.params.id)) {
+    db
+      .collection("movies")
+      .deleteOne({ _id: new ObjectId(req.params.id) })
+      .then((result) => {
+        res
+          .status(200)
+          .json(result)
+      })
+      .catch(() => handleError(res, "Something goes wrong..."))
+
+  } else {
+    handleError(res, "Wrong id")
   }
 })
