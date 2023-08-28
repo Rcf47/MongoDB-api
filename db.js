@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+const { MongoClient } = require("mongodb");
 
 const URL = "mongodb://localhost:27017/moviebox";
 
