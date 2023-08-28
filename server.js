@@ -18,6 +18,9 @@ connectToDb((err) => {
   }
 })
 
+const handleError = (res, error) => {
+  res.status(500).json({ error })
+}
 app.get("/movies", (req, res) => {
   const movies = [];
   db
