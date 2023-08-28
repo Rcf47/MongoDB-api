@@ -5,6 +5,7 @@ const { ObjectId } = require("mongodb");
 const PORT = 3000;
 
 const app = express();
+app.use(express.json())
 let db;
 
 connectToDb((err) => {
@@ -68,4 +69,18 @@ app.delete("/movies/:id", (req, res) => {
   } else {
     handleError(res, "Wrong id")
   }
+})
+
+app.post("/movies/", (req, res) => {
+
+  db
+    .collection("movies")
+    .insertOne(req.body)
+    .then((result) => {
+      res
+        .status(201)
+        .json(result)
+    })
+    .catch(() => handleError(res, "Something goes wrong..."))
+
 })
