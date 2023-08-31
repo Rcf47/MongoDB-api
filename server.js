@@ -14,16 +14,6 @@ mongoose
   .catch((err) => { `DB connection error: ${err}` })
 let db;
 
-connectToDb((err) => {
-  if (!err) {
-    app.listen(PORT, (err) => {
-      err ? console.error(err) : console.log(`Listening port ${PORT}`)
-    })
-    db = getDb();
-  } else {
-    console.error(`DB connection error: ${err}`)
-  }
-})
 
 const handleError = (res, error) => {
   res.status(500).json({ error })
