@@ -26,3 +26,9 @@ const movieSchema = new Schema({
     text: String
   }]
 })
+
+const Movie = mongoose.model('Movie', movieSchema);
+
+module.exports = {
+  Movie
+}
