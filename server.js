@@ -84,16 +84,15 @@ app.post("/movies/", (req, res) => {
 app.patch('/movies/:id', (req, res) => {
   if (ObjectId.isValid(req.params.id)) {
     db
-      .collection("movies")
+      .collection('movies')
       .updateOne({ _id: new ObjectId(req.params.id) }, { $set: req.body })
       .then((result) => {
         res
           .status(200)
-          .json(result)
+          .json(result);
       })
-      .catch(() => handleError(res, "Something goes wrong..."))
-
+      .catch(() => handleError(res, "Something goes wrong..."));
   } else {
-    handleError(res, "Wrong id")
+    handleError(res, "Wrong id");
   }
-})
+});
