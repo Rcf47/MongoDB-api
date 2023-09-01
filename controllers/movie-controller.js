@@ -14,7 +14,7 @@ const getMovies = (req, res) => {
         .status(200)
         .json(movies)
     })
-    .catch(() => handleError(res, "Something goes wrong..."))
+    .catch((err) => handleError(res, err))
 }
 
 const getMovie = (req, res) => {
@@ -25,7 +25,7 @@ const getMovie = (req, res) => {
         .status(200)
         .json(movie)
     })
-    .catch(() => handleError(res, "Something goes wrong..."))
+    .catch((err) => handleError(res, err))
 }
 
 const deleteMovie = (req, res) => {
@@ -36,7 +36,7 @@ const deleteMovie = (req, res) => {
         .status(200)
         .json(result)
     })
-    .catch(() => handleError(res, "Something goes wrong..."))
+    .catch((err) => handleError(res, err))
 }
 
 const addMovie = (req, res) => {
@@ -48,7 +48,7 @@ const addMovie = (req, res) => {
         .status(201)
         .json(result)
     })
-    .catch(() => handleError(res, "Something goes wrong..."))
+    .catch((err) => handleError(res, err))
 }
 
 const updateMovie = (req, res) => {
@@ -59,7 +59,7 @@ const updateMovie = (req, res) => {
         .status(200)
         .json(result);
     })
-    .catch(() => handleError(res, "Something goes wrong..."));
+    .catch((err) => handleError(res, err))
 }
 
 module.exports = {
